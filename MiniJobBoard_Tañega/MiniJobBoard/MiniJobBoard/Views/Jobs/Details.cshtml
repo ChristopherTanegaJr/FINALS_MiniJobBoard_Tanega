@@ -1,0 +1,12 @@
+@model MiniJobBoard.Models.Job
+@{
+    ViewData["Title"] = "Job Details";
+}
+
+<h1>@Model.Title</h1>
+<p><strong>Company:</strong> @Model.Company</p>
+<p><strong>Location:</strong> @Model.Location</p>
+<p><strong>Posted:</strong> @Model.PostedOn.ToLocalTime()</p>
+<hr />
+<p>@Model.Description</p>
+<p><a asp-action="Index">Back to list</a></p>

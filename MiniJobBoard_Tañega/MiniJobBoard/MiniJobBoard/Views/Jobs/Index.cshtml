@@ -1,0 +1,36 @@
+@model IEnumerable<MiniJobBoard.Models.Job>
+@{
+    ViewData["Title"] = "Jobs";
+}
+
+<h1>Job Listings</h1>
+<p><a asp-action="Create" class="btn btn-primary">Post a Job</a></p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Posted On</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var job in Model)
+    {
+        <tr>
+            <td>@job.Title</td>
+            <td>@job.Company</td>
+            <td>@job.Location</td>
+            <td>@job.PostedOn.ToLocalTime().ToString("yyyy-MM-dd")</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@job.Id">Details</a> |
+                <a asp-action="Edit" asp-route-id="@job.Id">Edit</a> |
+                <form asp-action="Delete" asp-route-id="@job.Id" method="post" style="display:inline">
+                    <button type="submit" class="btn btn-link">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
